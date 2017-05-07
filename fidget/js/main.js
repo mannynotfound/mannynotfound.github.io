@@ -108,8 +108,7 @@ function init() {
   controls.addEventListener('change', render);
   controls.enableZoom = false;
   controls.enableDamping = true;
-  controls.dampingFactor = 0.01;
-  controls.rotationSpeed = 0.1;
+  controls.dampingFactor = 0.05;
   controls.minPolarAngle = Math.PI / 3;
   controls.maxPolarAngle = Math.PI / 3;
 
