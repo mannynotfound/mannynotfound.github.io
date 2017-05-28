@@ -1,3 +1,22 @@
+/**
+ * THEME CONFIGURATION
+ */
+
+/**********************************************
+* SASS Configuration
+***********************************************/
+
+/**
+ * A-Frame color themes
+ *
+ * available themes are blue, green, red, yellow
+ * That defines which sass theme will be imported from ./color-themes
+ */
+
+/**
+ * VENDORS
+ */
+
 /* Applied to the html element */
 
 .a-html {
@@ -409,4 +428,8 @@ a-scene audio {
     top: 20px;
   }
 }
+
+/**
+ * Project styles
+ */
 
