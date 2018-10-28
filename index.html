@@ -200,11 +200,13 @@
                 .img-previews img {
                     width: 80px;
                 }
-                #container {
+                body:not(.ios-safari) #container {
                     height: calc(100vh - 50px);
                 }
                 footer {
                     height: 95px;
+                }
+                body:not(.ios-safari) footer {
                     margin-top: -45px;
                 }
                 #footer-header {
@@ -265,7 +267,7 @@
                 </div>
             </div>
         </div>
-        <footer id="footer">
+        <footer>
             <div id="footer-header">
                 CLICK TO TRY
             </div>
@@ -298,10 +300,7 @@
             var webkit = !!ua.match(/WebKit/i);
             var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
             if (iOSSafari) {
-                var container = document.getElementById('container');
-                container.cssText = 'height:calc(100% - 180px);';
-                var footer = document.getElementById('footer');
-                footer.cssText = 'margin-top:0;';
+                document.body.className = 'ios-safari';
             }
 
             var manny = new Manny({ container: '#container', useBackground: true });
