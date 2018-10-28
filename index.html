@@ -20,6 +20,23 @@
                 width: 100%;
                 height: calc(100vh - 180px);
                 display: inline-block;
+                position: relative;
+            }
+            #menu-button {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                font-weight: bold;
+                font-size: 3rem;
+                width: 40px;
+                text-align: center;
+                height: 40px;
+                line-height: 40px;
+                cursor: pointer;
+                z-index: 100;
+            }
+            #menu-button.menu-icon {
+                font-size: 2rem;
             }
             footer {
                 z-index: 100;
@@ -136,6 +153,12 @@
                     font-size: 2rem;
                     margin-bottom: 0px;
                 }
+                #menu-button {
+                    font-size: 1.8rem;
+                }
+                #menu-button.menu-icon {
+                    font-size: 1rem;
+                }
                 .options {
                     display: none;
                 }
@@ -192,6 +215,9 @@
     </head>
     <body>
         <div id="container">
+            <div id="menu-button">
+                &times;
+            </div>
             <div id="intro">
                 <h1>Download Manny.</h1>
                 <p class="intro-copy">
@@ -267,6 +293,25 @@
                 image.addEventListener('click', function() {
                     manny.do(image.id);
                 });
+            });
+
+            var menuButton = document.getElementById('menu-button');
+            menuButton.addEventListener('click', function() {
+                var intro = document.getElementById('intro');
+                if (intro.style.display === 'none') {
+                    intro.style.display = 'block';
+                } else {
+                    intro.style.display = 'none';
+                }
+
+                console.log(menuButton.innerText);
+                if (menuButton.innerText === '×') {
+                    menuButton.className = 'menu-icon'
+                    menuButton.innerText = '☰';
+                } else {
+                    menuButton.className = 'close-icon'
+                    menuButton.innerText = '×'
+                }
             });
 
             // TODO: add onload callback to manny
