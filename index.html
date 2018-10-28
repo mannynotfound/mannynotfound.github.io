@@ -7,20 +7,217 @@
         <style>
             body {
                 font-family: Monospace;
-                background-color: #000;
-                color: #fff;
                 margin: 0px;
                 overflow: hidden;
+            }
+            p {
+                margin-bottom: 10px;
+            }
+            #container {
+                width: 100%;
+                height: calc(100vh - 180px);
+                display: inline-block;
+            }
+            footer {
+                z-index: 100;
+                height: 175px;
+            }
+            .img-previews {
+                height: 100%;
+                width: 100vw;
+                white-space: nowrap;
+                display: inline-block;
+                overflow-x: auto;
+            }
+            .img-previews img {
+                width: 130px;
+                cursor: pointer;
+            }
+            #intro {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                max-width: 768px;
+                font-family: Helvetica, arial, sans-serif;
+            }
+            #intro h1 {
+                font-size: 5rem;
+                font-weight: bolder;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+            .intro-copy {
+                font-size: 1.6rem;
+                line-height: 2rem;
+                margin-bottom: 20px;
+            }
+            .download-link {
+                font-size: 1.6rem;
+                margin-top: 20px;
+            }
+            a {
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            .download-link img {
+                height: 30px;
+                width: auto;
+                position: relative;
+                top: 6px;
+                margin-left: 20px;
+            }
+            .code {
+                padding: 10px;
+                font-family: courier;
+                background-color: #eaeaea;
+                width: auto;
+                display: inline-block;
+            }
+            #external-links {
+                margin-top: 40px;
+            }
+            .external-link {
+                max-width: 80px;
+                display: inline-block;
+                text-align: center;
+                color: inherit;
+            }
+            .external-link img {
+                height: 60px;
+                width: auto;
+            }
+            .external-link h3 {
+                font-weight: normal;
+                margin: 5px;
+                font-size: 1rem;
+            }
+            .options {
+                display: inline-block;
+                width: 100%;
+            }
+            .option {
+                width: 50%;
+                float: left;
+            }
+            .option > p {
+                font-size: 1.4rem;
+            }
+            @media only screen and (max-width: 768px) {
+                #intro h1 {
+                    font-size: 3rem;
+                    margin-bottom: 5px;
+                }
+                .intro-copy {
+                    margin-top: 0;
+                    font-size: 1.2rem;
+                    line-height: 1.4rem;
+                }
+                .option > p {
+                    font-size: 1rem;
+                    margin-top: 0;
+                }
             }
         </style>
     </head>
     <body>
-        <div id="container"></div>
-        <script src="https://cdn.jsdelivr.net/npm/manny/lib/manny.js" type="text/javascript"></script>
+        <div id="container">
+            <div id="intro">
+                <h1>Download Manny.</h1>
+                <p class="intro-copy">
+                    A free, open-source model for use in video games,
+                    3d printing, and cross-platform virtual / augmented reality.
+                    Fully textured and rigged for emoting, moving, and dancing.
+                </p>
+                <div class="options">
+                    <div class="option">
+                        <p>Use Manny as code:</p>
+                        <div class="code">
+                            import Manny from 'manny';</br></br>
+
+                            const manny = new Manny();
+                        </div>
+                    </div>
+                    <div class="option">
+                        <p>Or Download Manny as an asset:</p>
+                        <div class="download-link">
+                            <img src="assets/icon-archive.png" />
+                            <a href="https://d2tm2f4d5v0kas.cloudfront.net/Manny.fbx" download>
+                                Manny (fbx)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="external-links">
+                    <a class="external-link" href="https://github.com/mannynotfound/manny">
+                        <img src="assets/github-logo.png" />
+                        <h3>Fork On GitHub</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="img-previews">
+                <img id="backflip" src="assets/backflip.gif" />
+                <img id="bboy flair" src="assets/bboy flair.gif" />
+                <img id="bboy footwork" src="assets/bboy footwork.gif" />
+                <img id="blow a kiss" src="assets/blow a kiss.gif" />
+                <img id="cheer" src="assets/cheering.gif" />
+                <img id="die" src="assets/dying.gif" />
+                <img id="fly" src="assets/fly.gif" />
+                <img id="k-pop dance" src="assets/gangam style.gif" />
+                <img id="hurricane kick" src="assets/hurricane kick.gif" />
+                <img id="pray" src="assets/praying.gif" />
+                <img id="run" src="assets/run.gif" />
+                <img id="situp" src="assets/situp.gif" />
+                <img id="sleep" src="assets/sleep.gif" />
+                <img id="t-pose" src="assets/t-pose.gif" />
+                <img id="teeter" src="assets/teeter.gif" />
+                <img id="twist dance" src="assets/twist.gif" />
+                <img id="victory" src="assets/victory.gif" />
+                <img id="ymca dance" src="assets/ymca.gif" />
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/manny@latest/lib/manny.js" type="text/javascript"></script>
         <script>
-            console.log(Manny);
-            var manny = new Manny({ container: '#container' });
-            manny.doTheMost();
+            var manny = new Manny({ container: '#container', useBackground: true });
+            manny.do('wave');
+            console.log(manny);
+            window.manny = manny;
+
+            var images = document.querySelectorAll('.img-previews img');
+            images.forEach(function(image) {
+                image.addEventListener('click', function() {
+                    manny.do(image.id);
+                });
+            });
+
+            // TODO: add onload callback to manny
+            function waitForManny3D(callback) {
+                if (manny.manny3D) {
+                    callback();
+                } else {
+                    setTimeout(function() {
+                        waitForManny3D(callback);
+                    }, 100)
+                }
+            }
+
+            waitForManny3D(function() {
+                manny.controls.enableRotate = false;
+                manny.controls.update();
+
+                if (window.innerWidth <= 1024) {
+                    return;
+                }
+
+                manny.manny3D.translateX(100);
+                manny.manny3D.translateZ(-50);
+                manny.manny3D.scale.set(1.2, 1.2, 1.2);
+            });
         </script>
     </body>
 </html>
